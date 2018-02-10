@@ -20,16 +20,9 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
-from django.contrib.auth.views import(
-    LoginView,
-    LogoutView,
-    PasswordResetView,
-    PasswordResetDoneView,
-    PasswordChangeView,
-    PasswordChangeDoneView,
-    PasswordResetConfirmView,
-    PasswordResetCompleteView,
+from django.contrib.auth.views import(LoginView,LogoutView,PasswordResetView,PasswordResetDoneView,PasswordChangeView,PasswordChangeDoneView,PasswordResetConfirmView,PasswordResetCompleteView,
     )
+from user.views import Register
 
 from django.contrib.auth import views as auth_views
 
@@ -46,4 +39,6 @@ urlpatterns = [
     url(r'^subject/', include('subject.urls', namespace='subject')),
     url(r'^professor/', include('professor.urls', namespace='professor')),
     url(r'^user/', include('user.urls', namespace='user')),
-]
+    url(r'^accounts/',include('django.contrib.auth.urls')),
+    url(r'^register/$', Register.as_view(), name='register'),
+    ]

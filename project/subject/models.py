@@ -5,6 +5,8 @@ from django.db.models.signals import pre_save
 from django.urls import reverse 
 from django.core.mail import send_mail
 # Create your models here.
+
+
 class subject(models.Model):
 
 	subject_name		 = 		models.CharField(max_length=150)

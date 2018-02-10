@@ -3,18 +3,23 @@ from django.conf import settings
 from django.db.models.signals import pre_save
 from django.urls import reverse 
 from django.core.mail import send_mail
-#from subject.models import
+from subject.models import subject
+from course.models import Course
+from professor.models import professor
 user = settings.AUTH_USER_MODEL
+from subject.utils import unique_slug_generator
+from professor.utils import unique_slug_generator
+from user.utils import unique_slug_generator
+
 # Create your models here.
 
 
 
 class Grade(models.Model):
 	user		 =      models.ForeignKey(user,on_delete=models.SET_NULL, null=True)
-#	Subject		 = 	 	models.ForeignKey('subject', on_delete=models.SET_NULL, null=True)
-#	Subject		 = 	 	models.ForeignKey('subject', on_delete=models.SET_NULL, null=True)
-#	Subject		 = 	 	models.ForeignKey('subject', on_delete=models.SET_NULL, null=True)
-#	Subject		 = 	 	models.ForeignKey('subject', on_delete=models.SET_NULL, null=True)
+	course 		 =      models.ForeignKey(Course,on_delete=models.SET_NULL, null=True)
+	subject 	 =      models.ForeignKey(subject,on_delete=models.SET_NULL, null=True)
+	professor 	 =      models.ForeignKey(professor,on_delete=models.SET_NULL, null=True)
 	quiz		 = 		models.IntegerField(null=True)
 	performance	 =	    models.IntegerField(null=True)
 	exam         =      models.IntegerField(null=True)
@@ -33,8 +38,9 @@ class Grade(models.Model):
 		self.computed = self.get_computed()
 		super(Grade, self).save(*args, **kwargs)
 	
+
 	def __str__(self):
-		return self.user.last_name
+		return '%s, %s' % (self.user.last_name, self.user.first_name)
 	
 	def get_absolute_url(self):
 		return reverse('grade-detail', args=[str(self.id)])
