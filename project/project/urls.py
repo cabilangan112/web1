@@ -14,8 +14,36 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
+from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic import TemplateView
+from django.urls import reverse_lazy
+from django.contrib.auth.views import(
+    LoginView,
+    LogoutView,
+    PasswordResetView,
+    PasswordResetDoneView,
+    PasswordChangeView,
+    PasswordChangeDoneView,
+    PasswordResetConfirmView,
+    PasswordResetCompleteView,
+    )
+
+from django.contrib.auth import views as auth_views
+
+from django.contrib.auth.decorators import user_passes_test
+
+anonymous_required =  user_passes_test(
+    lambda user: user.is_anonymous(),
+    settings.LOGIN_REDIRECT_URL,
+    redirect_field_name = 'next')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+	url(r'^grades/', include('grade.urls', namespace='grade')),
+    url(r'^subject/', include('subject.urls', namespace='subject')),
+    url(r'^professor/', include('professor.urls', namespace='professor')),
+    url(r'^user/', include('user.urls', namespace='user')),
 ]
