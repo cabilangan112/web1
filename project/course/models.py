@@ -3,7 +3,7 @@ from django.conf import settings
 from django.db.models.signals import pre_save
 from django.urls import reverse 
 from django.core.mail import send_mail
-user = settings.AUTH_USER_MODEL
+
 from subject.utils import unique_slug_generator
 from professor.utils import unique_slug_generator
 from user.utils import unique_slug_generator

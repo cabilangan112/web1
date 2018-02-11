@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 from subject.models import subject
 from course.models import Course
 from professor.models import professor
-user = settings.AUTH_USER_MODEL
+User = settings.AUTH_USER_MODEL
 from subject.utils import unique_slug_generator
 from professor.utils import unique_slug_generator
 from user.utils import unique_slug_generator
@@ -16,7 +16,7 @@ from user.utils import unique_slug_generator
 
 
 class Grade(models.Model):
-	user		 =      models.ForeignKey(user,on_delete=models.SET_NULL, null=True)
+	user		 =      models.ForeignKey(User,on_delete=models.SET_NULL, null=True)
 	course 		 =      models.ForeignKey(Course,on_delete=models.SET_NULL, null=True)
 	subject 	 =      models.ForeignKey(subject,on_delete=models.SET_NULL, null=True)
 	professor 	 =      models.ForeignKey(professor,on_delete=models.SET_NULL, null=True)
