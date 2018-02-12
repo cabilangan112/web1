@@ -1,5 +1,6 @@
 
 from django.db import models
+from course.models import Course
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
@@ -45,11 +46,26 @@ class MyUser(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    last_name     =  models.CharField(max_length=100)
+    last_name      =  models.CharField(max_length=100)
     first_name     =  models.CharField(max_length=100)
-    date_of_birth = models.DateField()
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
+    MI             =   models.CharField(max_length=200, help_text="Enter your middle Name")
+    Gender = (
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+    )
+    Sex             =   models.CharField(max_length=6, choices=Gender, blank=True, default=True)
+    date_of_birth   =   models.DateField()
+    Age             =   models.CharField(max_length=20)
+    course          =   models.ForeignKey(Course,on_delete=models.SET_NULL, null=True)
+    years = (
+        ('1st', '1st'),
+        ('2nd', '2nd'),
+        ('3rd', '3rd'),
+        ('4rth', '4rth'),
+    )
+    Year            = models.CharField(max_length=6, choices=years, blank=True, default=True)
+    is_active       = models.BooleanField(default=True)
+    is_admin        = models.BooleanField(default=False)
 
 
     objects = MyUserManager()
