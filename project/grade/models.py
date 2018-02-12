@@ -1,6 +1,5 @@
 from django.db import models
 from django.conf import settings
-from django.dispatch import receiver
 from django.db.models.signals import pre_save
 from django.urls import reverse 
 from django.core.mail import send_mail
@@ -29,6 +28,7 @@ class Grade(models.Model):
 	midterm      =      models.BooleanField(default=False)
 	Final        =      models.BooleanField(default=False)
 
+	slug					= models.SlugField(null=True, blank=True)
 	
 
 	def get_computed(self):
@@ -43,7 +43,7 @@ class Grade(models.Model):
 	def __str__(self):
 		return '%s, %s' % (self.user.last_name, self.user.first_name)
 
-	def send_gade(self):
+	def send_claim_email(self):
 		#print("Activation")
 		if self.Final:
 			subject = 'Activate Account'
@@ -62,8 +62,7 @@ class Grade(models.Model):
 	def get_absolute_url1(self):
 		return reverse('grade', kwargs={'slug': self.slug})
 
-	def receiver (sender, instance, *args, **kwargs):
+def rl_pre_save_receiver(sender, instance, *args, **kwargs):
 		if not instance.slug:
 			instance.slug = unique_slug_generator(instance)
-
-pre_save.connect(receiver, sender=Grade)
+pre_save.connect(rl_pre_save_receiver, sender=Grade)
