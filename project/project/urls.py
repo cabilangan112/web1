@@ -37,7 +37,7 @@ urlpatterns = [
 	url(r'^grades/', include('grade.urls', namespace='grade')),
     url(r'^subject/', include('subject.urls', namespace='subject')),
     url(r'^professor/', include('professor.urls', namespace='professor')),
-    url(r'^user/', include('user.urls', namespace='user')),
+    url(r'^user/', include('myuser.urls', namespace='myuser')),
 
 
 

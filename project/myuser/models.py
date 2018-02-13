@@ -33,6 +33,7 @@ class MyUserManager(BaseUserManager):
             email,
             password=password,
             date_of_birth=date_of_birth,
+
         )
         user.is_admin = True
         user.save(using=self._db)
@@ -47,7 +48,7 @@ class MyUser(AbstractBaseUser):
         unique=True,
     )
     Student_profile =   models.ImageField(upload_to = 'static/media')
-    last_name      =   models.CharField(max_length=100)
+    last_name      =    models.CharField(max_length=100)
     first_name     =   models.CharField(max_length=100)
     MI             =   models.CharField(max_length=200, help_text="Enter your middle Name")
     Gender = (
@@ -65,9 +66,9 @@ class MyUser(AbstractBaseUser):
         ('4rth', '4rth'),
     )
     Year            = models.CharField(max_length=6, choices=years, blank=True, default=True)
+
     is_active       = models.BooleanField(default=True)
     is_admin        = models.BooleanField(default=False)
-
 
 
     objects = MyUserManager()
@@ -76,7 +77,7 @@ class MyUser(AbstractBaseUser):
     REQUIRED_FIELDS = ['date_of_birth']
 
     def __str__(self):
-        return self.email
+        return self.last_name
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
