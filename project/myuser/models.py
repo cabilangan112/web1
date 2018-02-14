@@ -4,7 +4,26 @@ from course.models import Course
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
+class MyUserQuerySet(models.query.QuerySet):
+    def search(self, query): 
+        if query:
+            query = query.strip()
+            return self.filter(
+                Q(last_name__icontains=query)|
+                Q(first_name__icontains=query)|
+                Q(Grade__subject__icontains=query)|
+                Q(Grade__get_computed__icontains=query)|
+                Q(first_name__icontains=query)
+                ).distinct()
+        return self
 
+#search
+class MyUserManager(models.Manager):
+    def get_queryset(self):
+        return MyUserQuerySet(self.model, using=self._db)
+
+    def search(self, query):
+        return self.get_queryset().search(query)
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, date_of_birth, password=None):

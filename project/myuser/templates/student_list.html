@@ -1,8 +1,8 @@
 {% block content %} 
 
 	{% for obj in students %}
- 
-			<h4><a href='{% url "myuser:grade" obj.last_name%}?q={{ obj.last_name}} {{ obj.first_name}}'>{{ obj }}</a></h4>
+ 			<p><img src="{{ obj.MEDIA_URL }}{{ obj.Student_profile.url}}" width="200px"></p>
+			<p><a href='{% url "myuser:grade" obj.last_name%}?q={{ obj.last_name}} {{ obj.first_name}}'>{{ obj.first_name }} {{ obj.last_name }}</a></p>
 			<p> </p>
 			
 		

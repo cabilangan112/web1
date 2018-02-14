@@ -1,12 +1,11 @@
 {% block content %} 
 
-	{% for obj in students %}
- 
 
-			<p> {{ obj.last_name}} {{ obj.first_name}}</p>
+ 			<p><img src="{{ myuser.MEDIA_URL }}{{ myuser.Student_profile.url}}" width="200px"></p>
+			<p> {{ myuser.last_name}} {{ myuser.first_name}}</p>
+			<p> {{ myuser.Grade.subject}} {{ Grade.get_computed}}</p>
 			
 		
-
-	{% endfor %}	
+	
  
  	{% endblock %}
