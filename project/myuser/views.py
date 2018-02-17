@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import (
 
 
 from django.contrib.auth import get_user_model
-from .models import MyUser
+from subject.models import subject
 from django.shortcuts import render
 User = get_user_model()
 from django.shortcuts import render, get_object_or_404, redirect
@@ -81,9 +81,7 @@ class GradeDetail(DetailView):
 
 	model = Grade
 	template_name = "Grade.html"	
-	def get_context_data(self, **kwargs):
-		context = super(GradeDetail, self).get_context_data(**kwargs)
-		return context
+
 
 	def get_object(self):
 		last_name = self.kwargs.get("last_name")
@@ -94,9 +92,10 @@ class GradeDetail(DetailView):
 	def get_context_data(self, *args, **kwargs):
 		context =super(GradeDetail, self).get_context_data(*args, **kwargs)
 		myuser = context['myuser']
+
 		query = self.request.GET.get('q')
-		grade = Grade.objects.all().exists()
-		qs = MyUser.objects.all()
-		if grade and qs.exists():
-			context['Grade'] = qs
+		Grades = Grade.objects.all().exists()
+		qs = subject.objects.all().search(query)
+		if Grades and qs.exists():
+			context['grade'] = qs
 		return context

@@ -3,9 +3,13 @@
 
  			<p><img src="{{ myuser.MEDIA_URL }}{{ myuser.Student_profile.url}}" width="200px"></p>
 			<p> {{ myuser.last_name}} {{ myuser.first_name}}</p>
-			<p> {{ myuser.Grade.subject}} {{ Grade.get_computed}}</p>
+
+	{% if grade %}
+		{% for gr in grade %}
+			<p> {{ gr.subject}} {{ gr.get_computed}}</p>
+		{% endfor %}
 			
 		
 	
- 
- 	{% endblock %}
+ {% endif %}
+ 	{% endblock %}		

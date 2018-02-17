@@ -7,7 +7,6 @@ from django.core.mail import send_mail
 from subject.utils import unique_slug_generator
 from professor.utils import unique_slug_generator
 from user.utils import unique_slug_generator
-from subject.models import subject
 # Create your models here.
 
 
