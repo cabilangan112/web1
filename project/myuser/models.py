@@ -1,9 +1,38 @@
 
 from django.db import models
 from course.models import Course
+from django.db.models import Q
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
+class userQuerySet(models.query.QuerySet):
+    def search(self, query): 
+        if query:
+            query = query.strip()
+            return self.filter(
+
+                Q(grade__quiz__contains=query)|
+                Q(grade__quiz__exact=query)|
+                Q(grade__performance__contains=query)|
+                Q(grade__performance__exact=query)|
+                Q(grade__exam__contains=query)|
+                Q(grade__exam__exact=query)|
+                Q(grade__trinal__contains=query)|
+                Q(grade__trinal__exact=query)|
+                Q(grade__midterm__contains=query)|
+                Q(grade__midterm__exact=query)|
+                Q(grade__Final__contains=query)|
+                Q(grade__Final__exact=query)
+                ).distinct()
+        return self
+
+#search
+class userManager(models.Manager):
+    def get_queryset(self):
+        return userQuerySet(self.model, using=self._db)
+
+    def search(self, query):
+        return self.get_queryset().search(query)
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, date_of_birth, password=None):
@@ -65,7 +94,7 @@ class MyUser(AbstractBaseUser):
         ('4rth', '4rth'),
     )
     Year            = models.CharField(max_length=6, choices=years, blank=True, default=True)
-
+    objects         = userManager()
     is_active       = models.BooleanField(default=True)
     is_admin        = models.BooleanField(default=False)
 
