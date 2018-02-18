@@ -14,6 +14,7 @@ User = get_user_model()
 from django.shortcuts import render, get_object_or_404, redirect
 from grade.models import Grade
 from django.views import generic
+
 from django.views.generic import (ListView,DetailView,CreateView,UpdateView)
 # Create your views here.
 
@@ -77,25 +78,4 @@ class bsitfourth(generic.ListView):
 		context = {'students':qs,}
 		return render(request, "student_list.html", context)
 
-class GradeDetail(DetailView):
 
-	model = Grade
-	template_name = "Grade.html"	
-
-
-	def get_object(self):
-		last_name = self.kwargs.get("last_name")
-		if last_name is None:
-			raise Http404
-		return get_object_or_404(User, last_name__iexact=last_name, is_active=True)
-
-	def get_context_data(self, *args, **kwargs):
-		context =super(GradeDetail, self).get_context_data(*args, **kwargs)
-		myuser = context['myuser']
-
-		query = self.request.GET.get('q')
-		Grades = Grade.objects.all().exists()
-		qs = subject.objects.all().search(query)
-		if Grades and qs.exists():
-			context['grade'] = qs
-		return context

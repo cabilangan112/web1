@@ -1,5 +1,5 @@
 from django.conf.urls import url
-
+from user.views import Userdetail
 from . import views
 app_name='myuser'
 urlpatterns = [
@@ -15,6 +15,6 @@ urlpatterns = [
 
 
 	#DEtail
-	url(r'^(?P<last_name>[\w-]+)/$', views.GradeDetail.as_view(), name='grade'),
+	url(r'^(?P<last_name>[\w-]+)/$', Userdetail.as_view(), name='user'),
 
 ]

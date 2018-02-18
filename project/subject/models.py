@@ -14,19 +14,20 @@ class subjectQuerySet(models.query.QuerySet):
         if query:
             query = query.strip()
             return self.filter(
-                Q(subject_name__icontains=query)|
-                Q(grade__quiz__icontains=query)|
-                Q(grade__quiz__iexact=query)|
-                Q(grade__performance__icontains=query)|
-                Q(grade__performance__iexact=query)|
-                Q(grade__exam__icontains=query)|
-                Q(grade__exam__iexact=query)|
-                Q(grade__trinal__icontains=query)|
-                Q(grade__trinal__iexact=query)|
-                Q(grade__midterm__icontains=query)|
-                Q(grade__midterm__iexact=query)|
-                Q(grade__Final__icontains=query)|
-                Q(grade__Final__iexact=query)
+                Q(grade__subject__subject_name__contains=query)|
+                Q(grade__subject__subject_name__exact=query)|
+                Q(grade__quiz__contains=query)|
+                Q(grade__quiz__exact=query)|
+                Q(grade__performance__contains=query)|
+                Q(grade__performance__exact=query)|
+                Q(grade__exam__contains=query)|
+                Q(grade__exam__exact=query)|
+                Q(grade__trinal__contains=query)|
+                Q(grade__trinal__exact=query)|
+                Q(grade__midterm__contains=query)|
+                Q(grade__midterm__exact=query)|
+                Q(grade__Final__contains=query)|
+                Q(grade__Final__exact=query)
                 ).distinct()
         return self
 
