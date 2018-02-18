@@ -19,17 +19,17 @@ from django.views.generic import (ListView,DetailView,CreateView,UpdateView)
 #BSCS
 class bscsfirst(generic.ListView):
 	def get(self, request): 
-		qs = subject.objects.filter(grade__user__course__course_name__contains='BSCS',grade__user__Year__contains='1st')
-		students = Grade.objects.all()
-		context = {'students':qs,}
+		query = self.request.GET.get('q')
+		students = MyUser.objects.filter(course__course_name__contains='BSCS',Year__contains='1st').search(query)
+		context = {'students':students,}
 		return render(request, "student_list.html", context)
 
 
 class bscssecond(generic.ListView):
 	def get(self, request): 
-		qs = subject.objects.filter(grade__user__course__course_name__contains='BSCS',grade__user__Year__contains='2nd')
-		students = Grade.objects.all()
-		context = {'students':qs,}
+		query = self.request.GET.get('q')
+		students = MyUser.objects.filter(course__course_name__contains='BSCS',Year__contains='2nd').search(query)
+		context = {'students':students,}
 		return render(request, "student_list.html", context)
 
 class bscsthird(generic.ListView):
@@ -40,9 +40,9 @@ class bscsthird(generic.ListView):
 		return render(request, "student_list.html", context)
 class bscsfourth(generic.ListView):
 	def get(self, request): 
-		qs = subject.objects.filter(grade__user__course__course_name__contains='BSCS',grade__user__Year__contains='4rth')
-		students = Grade.objects.all()
-		context = {'students':qs,}
+		query = self.request.GET.get('q')
+		students = MyUser.objects.filter(course__course_name__contains='BSCS',Year__contains='4rth').search(query)
+		context = {'students':students,}
 		return render(request, "student_list.html", context)
 
 

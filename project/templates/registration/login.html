@@ -1,3 +1,6 @@
+{% block content %} 
+
+{% load staticfiles %}
 
 
 {% if form.errors %}
@@ -5,32 +8,67 @@
 {% endif %}
 
 {% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
+  {% if user.is_authenticated %}
+    <div class="col-md-12 offset-md-0 alert alert-danger" role="alert">
+      <p>Your account doesn't have to this page. To proceed, please login with an account that has access.</p>
+    </div>
+  {% else %}
+    <div class="col-md-12 offset-md-0 alert alert-danger" role="alert">
+      <p>Please login to see the page</p>
+    </div>
+  {% endif %}
 {% endif %}
 
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
+<div class="container py-5">
+  <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <span class="anchor" id="formLogin"></span>
 
-<div>
-  <td>{{ form.username.label_tag }}</td>
-  <td>{{ form.username }}</td>
+                    <!-- form card login -->
+                    <div class="cards card rounded-1">
+                        <div class="card-header">
+                            <h3 class="mb-0">Login</h3>
+                        </div>
+                        <div class="card-body">
+              <form method="post" action="{% url 'login' %}" class="form" role="form" autocomplete="off" id="formLogin">{% csrf_token %}
+                            {% if form.errors %}
+              <div class="col-md-12 offset-md-0 alert alert-danger" role="alert">
+                <strong>Oh snap!</strong> Please enter a correct and password. Note that both fields may be case-sensitive.
+                {% endif %}
+              </div>
+                                <form method="post" action="{% url 'login' %}">
+                                                  {% csrf_token %}
+
+                                                    <div>
+                                                <td>{{ form.username.label_tag }}</td>
+                                               <td>{{ form.username }}</td>
+                                              </div>
+                                          <div>
+                                       <td>{{ form.password.label_tag }}</td>
+                                         <td>{{ form.password }}</td>
+                                      </div>
+
+                                    <div>
+                                 <input type="submit" value="login" />
+                                <input type="hidden" name="next" value="{{ next }}" />
+                              </div>
+                            </form>
+                        </div>
+                        <!--/card-block-->
+                    </div>
+                    <!-- /form card login -->
+                </div>
+            </div>
+            <!--/row-->
+        </div>
+        <!--/col-->
+    </div>
+    <!--/row-->
 </div>
-<div>
-  <td>{{ form.password.label_tag }}</td>
-  <td>{{ form.password }}</td>
-</div>
+<!--/container-->
 
-<div>
-  <input type="submit" value="login" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</div>
-</form>
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
-{# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-
+{% endblock %} 

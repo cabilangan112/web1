@@ -38,7 +38,6 @@ urlpatterns = [
     url(r'^subject/', include('subject.urls', namespace='subject')),
     url(r'^professor/', include('professor.urls', namespace='professor')),
     url(r'^user/', include('myuser.urls', namespace='myuser')),
-
     url(r'^accounts/',include('django.contrib.auth.urls')),
 
 
