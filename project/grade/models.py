@@ -9,7 +9,7 @@ from professor.models import professor
 User = settings.AUTH_USER_MODEL
 from subject.utils import unique_slug_generator
 from professor.utils import unique_slug_generator
-from user.utils import unique_slug_generator
+
 
 # Create your models here.
 

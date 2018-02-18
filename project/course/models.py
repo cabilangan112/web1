@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 
 from subject.utils import unique_slug_generator
 from professor.utils import unique_slug_generator
-from user.utils import unique_slug_generator
+
 # Create your models here.
 
 
@@ -27,7 +27,7 @@ class Course(models.Model):
 		super(Course, self).save(*args, **kwargs)
 
 	def get_absolute_url(self):
-		return reverse('grade-detail', args=[str(self.id)])
+		return reverse('course-detail', args=[str(self.id)])
 
 	def get_absolute_url1(self):
 		return reverse('grade', kwargs={'slug': self.slug})

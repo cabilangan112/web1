@@ -14,6 +14,12 @@ class subjectQuerySet(models.query.QuerySet):
         if query:
             query = query.strip()
             return self.filter(
+                Q(grade__user__last_name__contains=query)|
+                Q(grade__user__last_name__exact=query)|
+                Q(grade__user__course__contains=query)|
+                Q(grade__user__course__exact=query)|
+                Q(grade__user__Year__contains=query)|
+                Q(grade__user__Year__exact=query)|
                 Q(grade__subject__subject_name__contains=query)|
                 Q(grade__subject__subject_name__exact=query)|
                 Q(grade__quiz__contains=query)|
