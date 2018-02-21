@@ -3,7 +3,7 @@ from django.db import models
 from course.models import Course
 from django.db.models import Q
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
+     BaseUserManager, AbstractBaseUser
 )
 class userQuerySet(models.query.QuerySet):
     def search(self, query): 
@@ -94,7 +94,7 @@ class MyUser(AbstractBaseUser):
         ('4rth', '4rth'),
     )
     Year            = models.CharField(max_length=6, choices=years, blank=True, default=True)
-    objects         = userManager()
+    objects          = MyUserManager()
     is_active       = models.BooleanField(default=True)
     is_admin        = models.BooleanField(default=False)
 

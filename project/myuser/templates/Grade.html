@@ -1,0 +1,9 @@
+ 	 	
+
+ 	 		<p><img src="{{  myuser.MEDIA_URL }}{{myuser.Student_profile.url}}" width="200px"></p>
+ 			<h3><a href=>{{  myuser.first_name }} {{ myuser.last_name }}</a></h3>
+
+ 			{% for student in myuser.grade_set.all %}
+		{{  student.quiz }}
+
+{% endfor %}
