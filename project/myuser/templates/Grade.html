@@ -3,7 +3,83 @@
  	 		<p><img src="{{  myuser.MEDIA_URL }}{{myuser.Student_profile.url}}" width="200px"></p>
  			<h3><a href=>{{  myuser.first_name }} {{ myuser.last_name }}</a></h3>
 
- 			{% for student in myuser.grade_set.all %}
-		{{  student.quiz }}
+<div class="w3-panel w3-card" style="
+			margin-bottom: 50px;
+			border-left-width: 1x;
+			border-left-style: solid;
+			border-top-style: solid;
+			border-top-width: 1px;
+			border-bottom-style: solid;
+			border-bottom-width: 1px;
+			border-right-style: solid;
 
-{% endfor %}
+
+			width: 350px;
+    ">		
+    <p align="center">Final</p>
+ 			
+     {% for student in myuser.grade_set.all %}
+
+ 			{% if student.Final %}
+ 			{% if student %}
+ 				<p>{{  student.subject.subject_name }}: {{  student.quiz }}</p>
+			{% else %}
+			<p class='lead'>No Items Found</p>
+			{% endif %}
+			{% endif %}
+			{% endfor %}
+</div>
+<div class="w3-panel w3-card" style="
+			margin-bottom: 50px;
+			border-left-width: 1x;
+			border-left-style: solid;
+			border-top-style: solid;
+			border-top-width: 1px;
+			border-bottom-style: solid;
+			border-bottom-width: 1px;
+			border-right-style: solid;
+
+
+			width: 350px;
+    ">			
+     
+ 			<p align="center">Midterm</p>
+     		{% for mid in myuser.grade_set.all %}
+				{% if mid.midterm %}
+ 				{% if mid %}
+				<p>{{  mid.subject.subject_name }}: {{  mid.quiz }}</p>
+				{% else %}
+					<p class='lead'>No midterm</p>
+				{% endif %}
+				{% endif %}
+			
+				{% endfor %}
+</div>
+
+
+<div class="w3-panel w3-card" style="
+			margin-bottom: 50px;
+			border-left-width: 1x;
+			border-left-style: solid;
+			border-top-style: solid;
+			border-top-width: 1px;
+			border-bottom-style: solid;
+			border-bottom-width: 1px;
+			border-right-style: solid;
+
+
+			width: 350px;
+    ">		
+     
+ 			<p align="center">Trinal</p>
+     		{% for tri in myuser.grade_set.all %}
+				{% if tri.trinal %}
+ 				{% if tri %}
+				<p>{{  trinal.subject.subject_name }}: {{  trinal.quiz }}</p>
+				{% else %}
+					<p class='lead'>No midterm</p>
+				{% endif %}
+				{% endif %}
+			
+				{% endfor %}
+</div>
