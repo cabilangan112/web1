@@ -75,7 +75,7 @@
      		{% for tri in myuser.grade_set.all %}
 				{% if tri.trinal %}
  				{% if tri %}
-				<p>{{  trinal.subject.subject_name }}: {{  trinal.quiz }}</p>
+				<p>{{  tri.subject.subject_name }}: {{  tri.quiz }}</p>
 				{% else %}
 					<p class='lead'>No midterm</p>
 				{% endif %}

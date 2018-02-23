@@ -20,17 +20,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
-from django.contrib.auth.views import(LoginView,LogoutView,PasswordResetView,PasswordResetDoneView,PasswordChangeView,PasswordChangeDoneView,PasswordResetConfirmView,PasswordResetCompleteView,)
- 
- 
-from django.contrib.auth import views as auth_views
 
-from django.contrib.auth.decorators import user_passes_test
-
-anonymous_required =  user_passes_test(
-    lambda user: user.is_anonymous(),
-    settings.LOGIN_REDIRECT_URL,
-    redirect_field_name = 'next')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

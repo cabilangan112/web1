@@ -2,10 +2,8 @@
 
 {% load staticfiles %}
 
+{% load crispy_forms_tags %}
 
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
 
 {% if next %}
   {% if user.is_authenticated %}
@@ -38,22 +36,16 @@
                 <strong>Oh snap!</strong> Please enter a correct and password. Note that both fields may be case-sensitive.
                 {% endif %}
               </div>
-                                <form method="post" action="{% url 'login' %}">
-                                                  {% csrf_token %}
+                                  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-8 col-12">
+    
+      <form method="post" novalidate>
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+        {{ form.username|as_crispy_field }}
+        {{ form.password|as_crispy_field }}
+        <button type="submit" class="btn btn-primary">Log in</button>
 
-                                                    <div>
-                                                <td>{{ form.username.label_tag }}</td>
-                                               <td>{{ form.username }}</td>
-                                              </div>
-                                          <div>
-                                       <td>{{ form.password.label_tag }}</td>
-                                         <td>{{ form.password }}</td>
-                                      </div>
-
-                                    <div>
-                                 <input type="submit" value="login" />
-                                <input type="hidden" name="next" value="{{ next }}" />
-                              </div>
                             </form>
                         </div>
                         <!--/card-block-->
