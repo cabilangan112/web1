@@ -5,61 +5,47 @@
 {% load crispy_forms_tags %}
 
 
-{% if next %}
-  {% if user.is_authenticated %}
-    <div class="col-md-12 offset-md-0 alert alert-danger" role="alert">
-      <p>Your account doesn't have to this page. To proceed, please login with an account that has access.</p>
+
+
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {% for error in form.non_field_errors %}
+        <p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
+      {% endfor %}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-  {% else %}
-    <div class="col-md-12 offset-md-0 alert alert-danger" role="alert">
-      <p>Please login to see the page</p>
-    </div>
+
+
   {% endif %}
-{% endif %}
-
-<div class="container py-5">
+  <div class="w3-panel w3-card" style="
+      margin-bottom: 50px;
+      border-left-width: 1x;
+      border-left-style: solid;
+      border-top-style: solid;
+      border-top-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-right-style: solid;
+      box-shadow:inset 1px 0px 20px 20px rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+      margin-top: 3px;
+      margin-top: 200px;
+      width: 500px;
+      height: 250px;
+      margin-left: 450px;
   <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-6 mx-auto">
-                    <span class="anchor" id="formLogin"></span>
-
-                    <!-- form card login -->
-                    <div class="cards card rounded-1">
-                        <div class="card-header">
-                            <h3 class="mb-0">Login</h3>
-                        </div>
-                        <div class="card-body">
-              <form method="post" action="{% url 'login' %}" class="form" role="form" autocomplete="off" id="formLogin">{% csrf_token %}
-                            {% if form.errors %}
-              <div class="col-md-12 offset-md-0 alert alert-danger" role="alert">
-                <strong>Oh snap!</strong> Please enter a correct and password. Note that both fields may be case-sensitive.
-                {% endif %}
-              </div>
-                                  <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-8 col-12">
-    
+      <h2>Log in</h2>
       <form method="post" novalidate>
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}">
         {{ form.username|as_crispy_field }}
         {{ form.password|as_crispy_field }}
         <button type="submit" class="btn btn-primary">Log in</button>
-
-                            </form>
-                        </div>
-                        <!--/card-block-->
-                    </div>
-                    <!-- /form card login -->
-                </div>
-            </div>
-            <!--/row-->
-        </div>
-        <!--/col-->
+      </form>
     </div>
-    <!--/row-->
-</div>
-<!--/container-->
+  </div>
 
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 

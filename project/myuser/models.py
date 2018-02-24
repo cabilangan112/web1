@@ -97,6 +97,8 @@ class MyUser(AbstractBaseUser):
     objects          = MyUserManager()
     is_active       = models.BooleanField(default=True)
     is_admin        = models.BooleanField(default=False)
+    is_faculty       = models.BooleanField(default=True)
+    is_student       = models.BooleanField(default=False)
 
 
 

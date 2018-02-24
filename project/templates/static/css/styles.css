@@ -3,6 +3,11 @@
  */
 
 /* Links */
+
+.w3-card, .w3-card-2 {
+    box-shadow: inset 1px 0px 20px 20px rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    height: 560px;
+width: 400px;}
 a,
 a:focus,
 a:hover {
@@ -20,10 +25,10 @@ a:hover {
 }
 
 .btn-secondary:hover{
-	color: #036A81;
-	text-shadow: none; /* Prevent inheritance from `body` */
-	background-color: #fff;
-	border: .05rem solid #036A81;
+  color: #036A81;
+  text-shadow: none; /* Prevent inheritance from `body` */
+  background-color: #fff;
+  border: .05rem solid #036A81;
 }
 
 /*
@@ -37,7 +42,7 @@ body {
   color: #FFF;
   margin:auto;
   /*background-image: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)), url(img/);*/
-  background-image: url(img/bg-latest-news-events.jpg);
+  background-image: url(img/2.png);
   background-repeat: no-repeat;
   display: table;
   top:0;

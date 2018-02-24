@@ -21,14 +21,16 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 
-
+from myuser.views import home
 urlpatterns = [
+    url(r'^$',home, name='home'),
     url(r'^admin/', admin.site.urls),
 	url(r'^grades/', include('grade.urls', namespace='grade')),
     url(r'^subject/', include('subject.urls', namespace='subject')),
     url(r'^professor/', include('professor.urls', namespace='professor')),
     url(r'^user/', include('myuser.urls', namespace='myuser')),
     url(r'^accounts/',include('django.contrib.auth.urls')),
+
 
 
 
