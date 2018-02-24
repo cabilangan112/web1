@@ -3,6 +3,7 @@
 	
 	{% for obj in students %}
 
+
  	 		<p><img src="{{  obj.MEDIA_URL }}{{obj.Student_profile.url}}" width="200px"></p>
  			<h3><a href='{% url "grade:detail" last_name=obj.last_name %}'>{{  obj.first_name }} {{ obj.last_name }}</a></h3>
 
@@ -12,5 +13,14 @@
 
 	{% endfor %}	
 	
+<ul class="sidebar-nav">
+   {% if user.is_authenticated %}
+   <li>User:Welcome {{ user.get_username }}</li>
+  
+   {% else %}
+   <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
+   {% endif %} 
+ </ul>
+
  
  	{% endblock %}

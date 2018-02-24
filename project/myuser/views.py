@@ -28,7 +28,7 @@ class bscsfirst(generic.ListView):
 		students = MyUser.objects.filter(course__course_name__contains='BSCS',Year__contains='1st')
 		context = {'students':students,}
 		return render(request, "student_list.html", context)
-
+@method_decorator([login_required, student_required], name='dispatch')
 
 class bscssecond(generic.ListView):
 	def get(self, request): 
@@ -36,7 +36,7 @@ class bscssecond(generic.ListView):
 		students = MyUser.objects.filter(course__course_name__contains='BSCS',Year__contains='2nd')
 		context = {'students':students,}
 		return render(request, "student_list.html", context)
-
+@method_decorator([login_required, student_required], name='dispatch')
 class bscsthird(generic.ListView):
 	def get(self, request): 
 
@@ -44,6 +44,7 @@ class bscsthird(generic.ListView):
 		students = MyUser.objects.filter(course__course_name__contains='BSCS',Year__contains='3rd')
 		context = {'students':students,}
 		return render(request, "student_list.html", context)
+		
 @method_decorator([login_required, student_required], name='dispatch')
 class bscsfourth(generic.ListView):
 
