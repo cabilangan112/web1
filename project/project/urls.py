@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url, include
@@ -21,7 +21,8 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 
-from myuser.views import home
+from myuser.views import home, StudentSignUpView,SignUpView
+from professor.views import TeacherSignUpView
 urlpatterns = [
     url(r'^$',home, name='home'),
     url(r'^admin/', admin.site.urls),
@@ -31,6 +32,11 @@ urlpatterns = [
     url(r'^user/', include('myuser.urls', namespace='myuser')),
     url(r'^accounts/',include('django.contrib.auth.urls')),
 
+
+
+    url(r'^accounts/signup/', SignUpView.as_view(), name='signup'),
+    url(r'^accounts/signup/student/', StudentSignUpView.as_view(), name='student_signup'),
+    url(r'^accounts/signup/faculty/', TeacherSignUpView.as_view(), name='faculty_signup'),
 
 
 

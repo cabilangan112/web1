@@ -15,7 +15,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from myuser.models import MyUser
 
 
-class UserCreationForm(forms.ModelForm):
+class StudentSignUpForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password."""
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
@@ -23,7 +23,19 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = MyUser
-        fields = ('email', 'date_of_birth')
+        fields = ('email',
+         'Student_profile',
+         'last_name',
+         'first_name',
+         'MI',
+         'Sex',
+         'date_of_birth',
+         'Age',
+         'course',
+         'Year',
+         'is_faculty',
+         'is_student')
+
 
     def clean_password2(self):
         # Check that the two password entries match

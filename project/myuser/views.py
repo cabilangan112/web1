@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import TemplateView
 from course.models import Course
 from django.conf import settings
 from django.shortcuts import redirect
@@ -14,6 +15,7 @@ from myuser.models import MyUser
 from django.utils.decorators import method_decorator
 from .decorators import student_required
 from django.views.generic import (ListView,DetailView,CreateView,UpdateView)
+from .forms import  StudentSignUpForm
 # Create your views here.
 
 def home(request):
@@ -56,3 +58,30 @@ class bscsfourth(generic.ListView):
 
 
 
+class StudentSignUpView(CreateView):
+    model = User
+    form_class = StudentSignUpForm
+    template_name = 'forms/signup_form.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'student'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('students:grade')
+
+ 
+
+
+class SignUpView(TemplateView):
+    template_name = 'forms/signup.html'
+
+def home(request):
+    if request.user.is_authenticated:
+        if request.user.is_teacher:
+            return redirect('faculty:quiz_change_list')
+        else:
+            return redirect('students:course')
+    return render(request, 'home.html')
