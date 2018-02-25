@@ -31,3 +31,14 @@ class Course(models.Model):
 
 	def get_absolute_url1(self):
 		return reverse('grade', kwargs={'slug': self.slug})
+
+
+class department (models.Model):
+	
+	Department_name  	=  models.CharField(max_length=100)
+	description 	=  models.TextField(max_length=500)
+
+
+	def __str__(self):
+		return self.Department_name
+	

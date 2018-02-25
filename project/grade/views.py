@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from course.models import Course
+from django.views.generic import TemplateView
 from django.conf import settings
 from django.shortcuts import redirect
 from django.contrib.auth import login
@@ -31,3 +32,14 @@ class ProfileDetailView(DetailView):
 		myuser = context['myuser']
 		return context
 method_decorator([login_required, student_required], name='dispatch')
+
+class SignUpView(TemplateView):
+    template_name = 'forms/signup.html'
+
+def home(request):
+    if request.user.is_authenticated:
+        if request.user.is_faculty:
+            return redirect('grade:detail')
+        else:
+            return redirect('grade:detail')
+    return render(request, 'homasse.html')

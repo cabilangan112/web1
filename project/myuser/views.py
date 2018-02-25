@@ -59,7 +59,7 @@ class bscsfourth(generic.ListView):
 
 
 class StudentSignUpView(CreateView):
-    model = User
+    model = MyUser
     form_class = StudentSignUpForm
     template_name = 'forms/signup_form.html'
 
@@ -70,18 +70,6 @@ class StudentSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('students:grade')
-
- 
+        return redirect('grade:detail')
 
 
-class SignUpView(TemplateView):
-    template_name = 'forms/signup.html'
-
-def home(request):
-    if request.user.is_authenticated:
-        if request.user.is_teacher:
-            return redirect('faculty:quiz_change_list')
-        else:
-            return redirect('students:course')
-    return render(request, 'home.html')
