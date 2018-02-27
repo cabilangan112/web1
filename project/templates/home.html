@@ -1,9 +1,9 @@
 
 
 {% block content %}
-
+<title>NDMC</title>
 {% load staticfiles %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
 <br/><br/><br/>
 <div class="site-wrapper">
@@ -12,21 +12,33 @@
 		
 		<main role="main" class="inner cover">
 			<div class="transbox">
+				   {% if user.is_authenticated %}
+						 {% if request.user.is_student %}
+						 	<div class="card">
+ 	 							<p><a href='{% url "grade:detail" last_name=user.last_name %}'><img id="myImg" src="{{  user.MEDIA_URL }}{{user.Student_profile.url}}" alt="{{user.first_name}}" width="105%"></a></p>
+  								<h1 style="text-align: center;">{{ user.first_name }} {{ user.last_name }}</h1>
+  									<p class="title">{{ user.get_username }}</li></p>
+  									<p> <li>Email: {{ user.get_username }}</li></p>
+ 								 <a href="#"><i class="fa fa-dribbble"></i></a>
+ 							 <a href="#"><i class="fa fa-twitter"></i></a>
+ 						 <a href="#"><i class="fa fa-linkedin"></i></a>
+					  <a href="#"><i class="fa fa-facebook"></i></a>
+
+				</div>
+  			 </div>
+  			</div>
+  		  </div>
+{% else %}
+ 					
+					 </ul>
 						<h3>One more for good measure.</h3>
 							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-									</div>
+						 </div>
 									<br></br><br>
 			<a href='{% url "login" %}' class="btn btn-lg btn-secondary">Sign-in</a>
 			</p>
 		</main>
-
-		<footer class="mastfoot">
-			<div class="inner">
-				<p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-			</div>
-		</footer>
-		</div>
-	</div>
-</div>
-
+ 		 {% endif %} 
+    {% endif %} 
+		
 {% endblock content %}
