@@ -1,50 +1,65 @@
- 	 	
+{% extends "base.html" %} 
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
 
+	{% load staticfiles %}
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+   <link rel="stylesheet" href="{% static 'css/card.css' %}">
+   <link rel="stylesheet" href="{% static 'css/image.css' %}">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<br></br>
+<br></br>
+<br></br>
+
+<br></br>
+
+<div class="bg"></div>
  	 		<p><img src="{{  myuser.MEDIA_URL }}{{myuser.Student_profile.url}}" width="200px"></p>
  			<h3><a href=>{{  myuser.first_name }} {{ myuser.last_name }}</a></h3>
-
-<div class="w3-panel w3-card" style="
-			margin-bottom: 50px;
-			border-left-width: 1x;
-			border-left-style: solid;
-			border-top-style: solid;
-			border-top-width: 1px;
-			border-bottom-style: solid;
-			border-bottom-width: 1px;
-			border-right-style: solid;
-
-
-			width: 350px;
-    ">		
-    <p align="center">Final</p>
- 			
-     {% for student in myuser.grade_set.all %}
-
- 			{% if student.Final %}
- 			{% if student %}
- 				<p>{{  student.subject.subject_name }}: {{  student.quiz }}</p>
-			{% else %}
-			<p class='lead'>No Items Found</p>
-			{% endif %}
-			{% endif %}
-			{% endfor %}
-</div>
-<div class="w3-panel w3-card" style="
-			margin-bottom: 50px;
-			border-left-width: 1x;
-			border-left-style: solid;
-			border-top-style: solid;
-			border-top-width: 1px;
-			border-bottom-style: solid;
-			border-bottom-width: 1px;
-			border-right-style: solid;
-
-
-			width: 350px;
-    ">			
+  <div class="panel-group" id="accordion">
+  	 <div class="col-md-4" style="margin-bottom:20px">
+    <div class="panel panel-default">
      
- 			<p align="center">Midterm</p>
-     		{% for mid in myuser.grade_set.all %}
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" align="center" ><p allign="center">Trinal</p></a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">    		
+        	{% for tri in myuser.grade_set.all %}
+				{% if tri.trinal %}
+ 				{% if tri %}
+				<h1>{{  tri.subject.subject_name }}: {{  tri.quiz }}</h1>
+				{% else %}
+					<p class='lead'>No midterm</p>
+				{% endif %}
+				{% endif %}
+			
+				{% endfor %}
+			</div>
+      </div>
+  </div>
+</div>
+ 
+  <div class="panel-group" id="accordion">
+  	 <div class="col-md-4" style="margin-bottom:20px">
+    <div class="panel panel-default">
+     
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" align="center" ><p allign="center">Midterm</p></a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse in">
+        <div class="panel-body"> 
+   				{% for mid in myuser.grade_set.all %}
 				{% if mid.midterm %}
  				{% if mid %}
 				<p>{{  mid.subject.subject_name }}: {{  mid.quiz }}</p>
@@ -54,32 +69,37 @@
 				{% endif %}
 			
 				{% endfor %}
-</div>
-
-
-<div class="w3-panel w3-card" style="
-			margin-bottom: 50px;
-			border-left-width: 1x;
-			border-left-style: solid;
-			border-top-style: solid;
-			border-top-width: 1px;
-			border-bottom-style: solid;
-			border-bottom-width: 1px;
-			border-right-style: solid;
-
-
-			width: 350px;
-    ">		
+        </div>
+      </div>
+  </div>
+    </div>
+  <div class="panel-group" id="accordion">
+  	 <div class="col-md-4" style="margin-bottom:20px">
+    <div class="panel panel-default">
      
- 			<p align="center">Trinal</p>
-     		{% for tri in myuser.grade_set.all %}
-				{% if tri.trinal %}
- 				{% if tri %}
-				<p>{{  tri.subject.subject_name }}: {{  tri.quiz }}</p>
-				{% else %}
-					<p class='lead'>No midterm</p>
-				{% endif %}
-				{% endif %}
-			
-				{% endfor %}
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" align="center" ><p allign="center">Final</p></a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse in">
+        <div class="panel-body"> 
+     {% for student in myuser.grade_set.all %}
+ 			{% if student.Final %}
+ 			{% if student %}
+ 				<p>{{  student.subject.subject_name }}: {{  student.quiz }}</p>
+			{% else %}
+			<p class='lead'>No Items Found</p>
+			{% endif %}
+			{% endif %}
+			{% endfor %}
+		</div>
+      </div>
+    </div>
+  </div> 
 </div>
+</html>
+</body>
+ {% endblock content %}
+ 	
+
