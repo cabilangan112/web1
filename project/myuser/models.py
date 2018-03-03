@@ -78,7 +78,7 @@ class MyUser(AbstractBaseUser):
     Student_profile =   models.ImageField(upload_to = 'static/media')
     last_name      =    models.CharField(max_length=100)
     first_name     =   models.CharField(max_length=100)
-    MI             =   models.CharField(max_length=200, help_text="Enter your middle Name")
+    MI             =   models.CharField(max_length=200)
     Gender = (
         ('Male', 'Male'),
         ('Female', 'Female'),

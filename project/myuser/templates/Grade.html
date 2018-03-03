@@ -20,13 +20,14 @@
 
 
 <div class="bg"></div>
-
+	
 <br></br>
 <div class="card">
  	 		<p><img src="{{  myuser.MEDIA_URL }}{{myuser.Student_profile.url}}" width="200px"></p>
  			<h3><a href=>{{  myuser.first_name }} {{ myuser.last_name }}</a></h3>
  		</div>
 <br></br>
+	{% include 'snippets/nav.html'%}
 
   <div class="panel-group" id="accordion">
   	 <div class="col-md-4" style="margin-bottom:20px">

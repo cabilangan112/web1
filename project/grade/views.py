@@ -33,13 +33,11 @@ class ProfileDetailView(DetailView):
 		return context
 method_decorator([login_required, student_required], name='dispatch')
 
-class SignUpView(TemplateView):
-    template_name = 'forms/signup.html'
 
 def home(request):
     if request.user.is_authenticated:
-        if request.user.is_faculty:
+        if request.user.is_student:
             return redirect('grade:detail')
         else:
-            return redirect('grade:detail')
-    return render(request, 'homasse.html')
+            return redirect('home.html')
+    return render(request, 'home.html')

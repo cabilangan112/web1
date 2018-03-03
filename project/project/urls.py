@@ -21,9 +21,9 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 
-from myuser.views import home, StudentSignUpView
+from myuser.views import home,  RegisterView
 from professor.views import TeacherSignUpView
-from grade.views import SignUpView,ProfileDetailView
+from grade.views import ProfileDetailView
 
 urlpatterns = [
     url(r'^$',home, name='home'),
@@ -36,12 +36,8 @@ urlpatterns = [
 
     url(r'^(?P<last_name>[\w-]+)/$', ProfileDetailView.as_view(), name='detail'),
 
-    url(r'^accounts/signup/', SignUpView.as_view(), name='signup'),
-    url(r'^accounts/signup/student/', StudentSignUpView.as_view(), name='student_signup'),
-    url(r'^accounts/signup/faculty/', TeacherSignUpView.as_view(), name='faculty_signup'),
 
-
-
+ 
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -13,11 +13,14 @@ from grade.models import Grade
 from django.views import generic
 from myuser.models import MyUser
 from django.utils.decorators import method_decorator
-from .decorators import student_required
+from .decorators import student_required,teacher_required
 from django.views.generic import (ListView,DetailView,CreateView,UpdateView)
-from .forms import  StudentSignUpForm
+from .forms import  UserCreationForm,facultyCreationForm
 # Create your views here.
 
+class SignUpView(TemplateView):
+    template_name = 'forms/signup.html'
+    
 def home(request):
     obj = Course.objects.all()
     context = {'obj': obj}
@@ -56,20 +59,31 @@ class bscsfourth(generic.ListView):
 		context = {'students':students,}
 		return render(request, "student_list.html", context)
 
+@method_decorator([login_required, teacher_required], name='dispatch')
+class RegisterView(CreateView):
+	model = User
+	form_class = UserCreationForm
+	template_name = 'forms/signup_form.html'
 
+	def get_context_data(self, **kwargs):
+		kwargs['user_type'] = 'student'
+		return super().get_context_data(**kwargs)
 
-class StudentSignUpView(CreateView):
-    model = MyUser
-    form_class = StudentSignUpForm
-    template_name = 'forms/signup_form.html'
+	def form_valid(self, form):
+		user = form.save()
+		login(self.request, user)
+		return redirect('/home')
+@method_decorator([login_required, teacher_required], name='dispatch')
+class FacultyRegisterView(CreateView):
+	model = User
+	form_class = facultyCreationForm
+	template_name = 'forms/signup_form.html'
 
-    def get_context_data(self, **kwargs):
-        kwargs['user_type'] = 'student'
-        return super().get_context_data(**kwargs)
+	def get_context_data(self, **kwargs):
+		kwargs['user_type'] = 'faculty'
+		return super().get_context_data(**kwargs)
 
-    def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        return redirect('grade:detail')
-
-
+	def form_valid(self, form):
+		user = form.save()
+		login(self.request, user)
+		return redirect('/home')
