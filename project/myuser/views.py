@@ -79,6 +79,7 @@ class FacultyRegisterView(CreateView):
 	form_class = facultyCreationForm
 	template_name = 'forms/signup_form.html'
 
+
 	def get_context_data(self, **kwargs):
 		kwargs['user_type'] = 'faculty'
 		return super().get_context_data(**kwargs)
@@ -91,12 +92,11 @@ class FacultyRegisterView(CreateView):
 
 @method_decorator([login_required, teacher_required], name='dispatch')
 class StudentUpdateView(UpdateView):
+	model = User
 	form_class = UserCreationForm
 	template_name = 'forms/update_form.html'
 	
 
-	def get_queryset(self):
-		return Course.objects.all()
 	def get_context_data(self, *args, **kwargs):
 		context = super(StudentUpdateView, self).get_context_data(*args, **kwargs)
 		context['title'] = 'Update student'
@@ -106,5 +106,5 @@ class StudentUpdateView(UpdateView):
 	#giving data
 	def get_form_kwargs(self):
 		kwargs = super(StudentUpdateView, self).get_form_kwargs()
-		kwargs['user_type'] = 'student'
+ 
 		return kwargs

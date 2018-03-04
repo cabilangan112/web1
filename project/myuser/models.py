@@ -95,12 +95,12 @@ class MyUser(AbstractBaseUser):
         ('4rth', '4rth'),
     )
     Year            = models.CharField(max_length=6, choices=years, blank=True, default=True)
-    slug         =      models.SlugField(null=True, blank=True)
-    objects          = MyUserManager()
+    slug            = models.SlugField(null=True, blank=True)
+    objects         = MyUserManager()
     is_active       = models.BooleanField(default=True)
     is_admin        = models.BooleanField(default=False)
-    is_faculty       = models.BooleanField(default=False)
-    is_student       = models.BooleanField(default=False)
+    is_faculty      = models.BooleanField(default=False)
+    is_student      = models.BooleanField(default=False)
 
 
 
