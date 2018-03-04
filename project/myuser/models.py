@@ -1,6 +1,7 @@
-
+from django.urls import reverse
 from django.db import models
 from course.models import Course
+from .utils import unique_slug_generator
 from django.db.models import Q
 from django.contrib.auth.models import (
      BaseUserManager, AbstractBaseUser
@@ -94,6 +95,7 @@ class MyUser(AbstractBaseUser):
         ('4rth', '4rth'),
     )
     Year            = models.CharField(max_length=6, choices=years, blank=True, default=True)
+    slug         =      models.SlugField(null=True, blank=True)
     objects          = MyUserManager()
     is_active       = models.BooleanField(default=True)
     is_admin        = models.BooleanField(default=False)
@@ -107,6 +109,9 @@ class MyUser(AbstractBaseUser):
 
     def __str__(self):
         return self.last_name
+
+    def get_absolute_url(self):
+        return reverse('myuser:edit', kwargs={'slug': self.slug})
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"

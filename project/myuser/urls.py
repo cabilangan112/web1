@@ -11,4 +11,7 @@ urlpatterns = [
 	url(r'^signup/', views.SignUpView.as_view(), name='signup'),
 	url(r'^signup/student/', views.RegisterView.as_view(), name='student'),
 	url(r'^signup/faculty/', views.FacultyRegisterView.as_view(), name='faculty'),
+
+
+	url(r'^(?P<slug>[\w-]+)/$', views.StudentUpdateView.as_view(), name='edit'),
 ]
