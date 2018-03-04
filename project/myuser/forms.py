@@ -25,7 +25,6 @@ class UserCreationForm(forms.ModelForm):
         'Age',
         'course',
         'Year',
-        'slug',
         'is_student',)
 
     def clean_password2(self):
@@ -61,7 +60,6 @@ class facultyCreationForm(forms.ModelForm):
         'Sex',
         'date_of_birth',
         'Age',
-        'slug',
         'is_faculty',)
 
     def clean_password2(self):

@@ -97,6 +97,12 @@ class StudentUpdateView(UpdateView):
 	template_name = 'forms/update_form.html'
 	
 
+	def get_object(self):
+		last_name = self.kwargs.get("last_name")
+		if last_name is None:
+			raise Http404
+		return get_object_or_404(User, last_name__iexact=last_name, is_active=True)
+		
 	def get_context_data(self, *args, **kwargs):
 		context = super(StudentUpdateView, self).get_context_data(*args, **kwargs)
 		context['title'] = 'Update student'
@@ -106,5 +112,4 @@ class StudentUpdateView(UpdateView):
 	#giving data
 	def get_form_kwargs(self):
 		kwargs = super(StudentUpdateView, self).get_form_kwargs()
- 
 		return kwargs

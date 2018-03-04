@@ -6,9 +6,10 @@
 <div class="card">
   <form method="post" novalidate>
     {% csrf_token %}
-    {{ form|crispy }}
+    {{ form.as_p}}
+
     <br></br>
-    <button type="submit" class="btn btn-success">Save changes</button>
+  	<input type="submit" value="Add Student">
   </form>
 </div>
 {% endblock %}

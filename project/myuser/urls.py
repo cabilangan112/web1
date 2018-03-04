@@ -13,5 +13,5 @@ urlpatterns = [
 	url(r'^signup/faculty/', views.FacultyRegisterView.as_view(), name='faculty'),
 
 
-	url(r'^(?P<slug>[\w-]+)/$', views.StudentUpdateView.as_view(), name='edit'),
+	url(r'^(?P<last_name>[\w-]+)/$', views.StudentUpdateView.as_view(), name='edit'),
 ]

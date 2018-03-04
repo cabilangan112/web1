@@ -31,7 +31,7 @@ class ProfileDetailView(DetailView):
 		context =super(ProfileDetailView, self).get_context_data(*args, **kwargs)
 		myuser = context['myuser']
 		return context
-method_decorator([login_required, student_required], name='dispatch')
+
 
 
 def home(request):
