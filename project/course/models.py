@@ -3,7 +3,6 @@ from django.conf import settings
 from django.db.models.signals import pre_save
 from django.urls import reverse 
 from django.core.mail import send_mail
-
 from subject.utils import unique_slug_generator
 from professor.utils import unique_slug_generator
 
@@ -14,11 +13,12 @@ class Course(models.Model):
 	
 	course_name  	=  models.CharField(max_length=100)
 	description 	=  models.TextField(max_length=500)
+	Department	 =     models.ForeignKey('department' ,on_delete=models.SET_NULL, null=True)
 	
 
 	def __str__(self):
-		return self.course_name
-		return "{} Courses {}" .format(self.course_name, self.list_subjects())
+		return '%s, %s' % (self.course_name , self.Department)
+ 
 		
 	def list_subjects(self):
 		return ",".join([subject.subject_name for subject in self.subject.all()])
@@ -33,8 +33,7 @@ class Course(models.Model):
 		return reverse('grade', kwargs={'slug': self.slug})
 
 
-class department (models.Model):
-	
+class department(models.Model):
 	Department_name  	=  models.CharField(max_length=100)
 	description 	=  models.TextField(max_length=500)
 

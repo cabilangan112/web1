@@ -1,0 +1,10 @@
+{% block content %}
+  <h2>CITE Department </h2>
+  <p class="lead">Select below the type of Course</p>
+  <p><a href="{% url 'myuser:firstyear' %}"   role="button">BSCS First Year</a></p>
+  <p><a href="{% url 'myuser:secondyear' %}"   role="button">BSCS Second</a></p>
+  <p><p><a href="{% url 'myuser:thirdyear' %}"   role="button">BSCS Third</a></p>
+  <p><a href="{% url 'myuser:fourthyear' %}"   role="button">BSCS Fourth</a></p>
+
+ 
+{% endblock %}

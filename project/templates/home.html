@@ -28,19 +28,25 @@
   			 </div>
   			</div>
   		  </div>
-  		  				   {% if user.is_authenticated %}
-						 {% if request.user.is_faculty %}
-				<p>Welocme Ser </p>
- 
+  		  			  
 
+ {% else %}
+ 					
+					 </ul>
+						<h3>One more for good measure.</h3>
+							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+						 </div>
+									<br></br><br>
+			<a href='{% url "login" %}' class="btn btn-lg btn-secondary">Sign-in</a>
+			</p>
+		</main>
 			</p>
 		</main>
 	</div>
 </div>
 </div>
  		 {% endif %} 
- 		  {% endif %} 
- 		   {% endif %} 
+ 	 
     {% endif %} 
 		
 {% endblock content %}
