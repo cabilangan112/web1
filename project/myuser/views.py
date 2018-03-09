@@ -30,9 +30,13 @@ class citedep(TemplateView):
     template_name = 'department/cite.html'
     
 def home(request):
-    obj = Course.objects.all()
-    context = {'obj': obj}
-    return render(request, 'home.html', context)
+	if request.user.is_authenticated:
+		if request.user.is_faculty:
+			return redirect('myuser:department')
+   
+	obj = Course.objects.all()
+	context = {'obj': obj}
+	return render(request, 'home.html', context)
 
 #BSCS
 @method_decorator([login_required, teacher_required], name='dispatch')

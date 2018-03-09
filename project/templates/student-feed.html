@@ -1,5 +1,3 @@
-
-{% extends "base.html" %} 
 {% block content %}
 <title>NDMC</title>
 {% load staticfiles %}
@@ -12,35 +10,21 @@
 		
 		<main role="main" class="inner cover">
 			<div class="transbox">
-				   {% if user.is_authenticated %}
-						 {% if request.user.is_student %}
+
 						 	<div class="card">
  	 							<p><a href='{% url "grade:detail" last_name=user.last_name %}'><img id="myImg" src="{{  user.MEDIA_URL }}{{user.Student_profile.url}}" alt="{{user.first_name}}" width="105%"></a></p>
   								<h1 style="text-align: center;">{{ user.first_name }} {{ user.last_name }}</h1>
   									<p class="title">{{ user.get_username }}</li></p>
   									<p> <li>Email: {{ user.get_username }}</li></p>
-  											{% endif %} 
-  				{% else %}						 	 
+ 								 <a href="#"><i class="fa fa-dribbble"></i></a>
+ 							 <a href="#"><i class="fa fa-twitter"></i></a>
+ 						 <a href="#"><i class="fa fa-linkedin"></i></a>
+					  <a href="#"><i class="fa fa-facebook"></i></a>
 
- 	 
- 					</ul>
-						<h3>One more for good measure.</h3>
-							<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-						 </div>
-									<br></br><br>
-												<p class="lead">
-			<a href='{% url "login" %}' class="btn btn-lg btn-secondary">Sign-in</a>
-					
-		 
-  		  					{% endif %}
+
+
+
+
+
 	
-			</p>
-		</main>
-		 
- 
-	</div>
-</div>
-</div>
-
-		
-{% endblock content %}
+	 

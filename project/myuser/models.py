@@ -108,7 +108,7 @@ class MyUser(AbstractBaseUser):
     REQUIRED_FIELDS = ['date_of_birth']
 
     def __str__(self):
-        return self.last_name
+        return '%s, %s, %s, %s'  % (self.last_name, self.first_name, self.course, self.Year)
 
 
     def has_perm(self, perm, obj=None):
