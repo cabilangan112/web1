@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.core.mail import send_mail
 from subject.models import subject
 from course.models import Course
+
 from professor.models import professor
 User = settings.AUTH_USER_MODEL
 from subject.utils import unique_slug_generator

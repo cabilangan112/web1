@@ -2,6 +2,7 @@ from django.shortcuts import render
 from course.models import Course
 from django.views.generic import TemplateView
 from django.conf import settings
+from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
@@ -14,6 +15,7 @@ from django.views import generic
 from myuser.models import MyUser
 from django.utils.decorators import method_decorator
 from myuser.decorators import student_required
+from .forms import GradeCreate
 from django.views.generic import (ListView,DetailView,CreateView,UpdateView)
 # Create your views here.
 
@@ -33,11 +35,20 @@ class ProfileDetailView(DetailView):
 		return context
 
 
+class grade_Create(CreateView):
 
-def home(request):
-    if request.user.is_authenticated:
-        if request.user.is_student:
-            return redirect('grade:detail')
-        else:
-            return redirect('home.html')
-    return render(request, 'home.html')
+	form_class = GradeCreate
+	template_name = 'forms/grade-create.html'
+
+	def get_context_data(self, **kwargs):
+		kwargs['user_type'] = 'student'
+		return super().get_context_data(**kwargs)
+
+	def get_queryset(self):
+		return Grade.objects.filterfilter(user=self.request.user.is_student)
+
+	def form_valid(self, form):
+		user = form.save()
+		login(self.request, user)
+		return redirect('/home')
+ 
