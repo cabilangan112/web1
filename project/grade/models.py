@@ -17,9 +17,18 @@ from professor.utils import unique_slug_generator
 
 
 class Grade(models.Model):
-	user		 =      models.ForeignKey(User,on_delete=models.SET_NULL, null=True)
+	user		 =      models.OneToOneField(User, on_delete=models.CASCADE, related_name='Grade')
+	First_year_Grade     =      models.BooleanField(default=False)
+	Second_year_Grade	 = 		models.BooleanField(default=False)
+	Third_year_Grade	 = 		models.BooleanField(default=False)
+	Fourth_year_Grade    =      models.BooleanField(default=False)
+
 	subject 	 =      models.ForeignKey(subject,on_delete=models.SET_NULL, null=True)
 	professor 	 =      models.ForeignKey(professor,on_delete=models.SET_NULL, null=True)
+
+
+	First_Sem	 = 		models.BooleanField(default=False)
+	Second_Sem   =      models.BooleanField(default=False)
 
 	quiz		 = 		models.IntegerField(null=True)
 	performance	 =	    models.IntegerField(null=True)
@@ -28,11 +37,12 @@ class Grade(models.Model):
 	trinal		 = 		models.BooleanField(default=False)
 	midterm      =      models.BooleanField(default=False)
 	Final        =      models.BooleanField(default=False)
+ 
 
-	slug		 =		models.SlugField(null=True, blank=True)
-	
-
-
+	def grade(self):
+		if self.user.Year=='3rd':
+			Third_year_Grade	 = 		models.BooleanField(default=True)
+			return grade
 
 	def get_computed(self):
 		result = self.quiz * 0.25 + self.performance * 0.25 + self.exam  * 0.50 
@@ -63,16 +73,11 @@ class Grade(models.Model):
 	def get_absolute_url(self):
 		return reverse('grade-detail', args=[str(self.id)])
 
-	def get_absolute_url1(self):
-		return reverse('grade', kwargs={'slug': self.slug})
+ 
 
 	@property
 	def title(self):
 		return self.user.last_name
 
 
-def rl_pre_save_receiver(sender, instance, *args, **kwargs):
-	if not instance.slug:
-		instance.slug = unique_slug_generator(instance)
-
-pre_save.connect(rl_pre_save_receiver, sender=Grade)
+ 

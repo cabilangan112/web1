@@ -10,6 +10,10 @@ class GradeCreate(forms.ModelForm):
 		model = Grade
 		fields = [
 			'user',
+			'First_year_Grade',
+			'Second_year_Grade',
+			'Third_year_Grade',
+			'Fourth_year_Grade',
 			'subject',
 			'professor',
 			'quiz',
@@ -20,4 +24,4 @@ class GradeCreate(forms.ModelForm):
 			'Final',
 
 		]
-		
+ 
