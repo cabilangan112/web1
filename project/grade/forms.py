@@ -16,6 +16,8 @@ class GradeCreate(forms.ModelForm):
 			'Fourth_year_Grade',
 			'subject',
 			'professor',
+			'First_Sem',
+			'Second_Sem',
 			'quiz',
 			'performance',
 			'exam',
