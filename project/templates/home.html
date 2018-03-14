@@ -15,7 +15,7 @@
 				   {% if user.is_authenticated %}
 						 {% if request.user.is_student %}
 						 	<div class="card">
- 	 							<p><a href='{% url "grade:detail" last_name=user.last_name %}'><img id="myImg" src="{{  user.MEDIA_URL }}{{user.Student_profile.url}}" alt="{{user.first_name}}" width="105%"></a></p>
+ 	 							<p><a href="{% url 'grade:Year'  %}"><img id="myImg" src="{{  user.MEDIA_URL }}{{user.Student_profile.url}}" alt="{{user.first_name}}" width="105%"></a></p>
   								<h1 style="text-align: center;">{{ user.first_name }} {{ user.last_name }}</h1>
   									<p class="title">{{ user.get_username }}</li></p>
   									<p> <li>Email: {{ user.get_username }}</li></p>

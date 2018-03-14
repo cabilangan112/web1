@@ -23,7 +23,7 @@ from django.urls import reverse_lazy
 
 from myuser.views import home,  RegisterView
 from professor.views import TeacherSignUpView
-from grade.views import ProfileDetailView
+ 
 
 urlpatterns = [
     url(r'^$',home, name='home'),
@@ -34,8 +34,7 @@ urlpatterns = [
     url(r'^user/', include('myuser.urls', namespace='myuser')),
     url(r'^accounts/',include('django.contrib.auth.urls')),
 
-    url(r'^(?P<last_name>[\w-]+)/$', ProfileDetailView.as_view(), name='detail'),
-
+ 
 
  
 ]
