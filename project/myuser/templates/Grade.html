@@ -1,5 +1,6 @@
 {% extends "base.html" %} 
 {% block content %}
+
 <title> {{ myuser.last_name }}</title>
 <!DOCTYPE html>
 <html>
@@ -30,31 +31,38 @@
  		</div>
 <br></br>
 	<div>{% include 'snippets/nav.html'%}</div>
+  <div>
+<p>First Year Record</p>
 
-  <div class="panel-group" id="accordion">
-  	 <div class="col-md-4" style="margin-bottom:20px">
+ <div class="panel-group" id="accordion">
+     <div class="col-md-4" style="margin-bottom:20px">
     <div class="panel panel-default">
      
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" align="center" ><p allign="center">Trinal</p></a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" align="center" ><p allign="center">Midterm</p></a>
         </h4>
       </div>
-      <div id="collapse1" class="panel-collapse collapse in">
-        <div class="panel-body">    		
-        	{% for tri in myuser.grade_set.all %}
-				{% if tri.trinal %}
- 				{% if tri %}
-				<p>{{  tri.subject.subject_name }}: {{  tri.quiz }}</p>
-				{% else %}
-					<p class='lead'>No midterm</p>
-				{% endif %}
-				{% endif %}
-			
-				{% endfor %}
+      <div id="collapse2" class="panel-collapse collapse in">
+        <div class="panel-body">  
+          {% for grade in myuser.grade_set.all %}
+          {% if grade.First_year_Grade %}
+          {% if grade.First_Sem %}
+          {% if grade.trinal %}
+ 
+
+ 			 
+				<p>{{  grade.subject.subject_name }}: {{  grade.get_computed}}</p>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+ 
+       {% endfor %}
+
 			</div>
       </div>
   </div>
+</div>
 </div>
  
   <div class="panel-group" id="accordion">
@@ -68,16 +76,22 @@
       </div>
       <div id="collapse2" class="panel-collapse collapse in">
         <div class="panel-body"> 
-   				{% for mid in myuser.grade_set.all %}
-				{% if mid.midterm %}
- 				{% if mid %}
-				<p>{{  mid.subject.subject_name }}: {{  mid.quiz }}</p>
-				{% else %}
-					<p class='lead'>No midterm</p>
-				{% endif %}
-				{% endif %}
-			
-				{% endfor %}
+ 
+          {% for grade in myuser.grade_set.all %}
+          {% if grade.First_year_Grade %}
+          {% if grade.First_Sem %}
+          {% if grade.trinal %}
+ 
+
+       
+        <p>{{  grade.subject.subject_name }}: {{  grade.get_computed}}</p>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+ 
+       {% endfor %}
+
+	 
         </div>
       </div>
   </div>
@@ -93,24 +107,130 @@
       </div>
       <div id="collapse3" class="panel-collapse collapse in">
         <div class="panel-body"> 
-     {% for student in myuser.grade_set.all %}
- 			{% if student.Final %}
- 			{% if student %}
- 				<p>{{  student.subject.subject_name }}: {{  student.quiz }}</p>
-			{% else %}
-			<p class='lead'>No Items Found</p>
-			{% endif %}
-			{% endif %}
-			{% endfor %}
+  
+          {% for grade in myuser.grade_set.all %}
+          {% if grade.First_year_Grade %}
+          {% if grade.First_Sem %}
+          {% if grade.trinal %}
+ 
+
+       
+        <p>{{  grade.subject.subject_name }}: {{  grade.get_computed}}</p>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+ 
+       {% endfor %}
+
+        </div>
+      </div>
+  </div>
+    </div>
+</div>
+ <div class="panel-group" id="accordion">
+     <div class="col-md-4" style="margin-bottom:20px">
+    <div class="panel panel-default">
+     
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" align="center" ><p allign="center">Midterm</p></a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse in">
+        <div class="panel-body">  
+          {% for grade in myuser.grade_set.all %}
+          {% if grade.Second_year_Grade %}
+          {% if grade.First_Sem %}
+          {% if grade.trinal %}
+ 
+
+       
+        <p>{{  grade.subject.subject_name }}: {{  grade.get_computed}}</p>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+ 
+       {% endfor %}
+
+      </div>
+      </div>
+  </div>
+</div>
+</div>
+ <div class="panel-group" id="accordion">
+     <div class="col-md-4" style="margin-bottom:20px">
+    <div class="panel panel-default">
+     
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" align="center" ><p allign="center">Midterm</p></a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse in">
+        <div class="panel-body">  
+          {% for grade in myuser.grade_set.all %}
+          {% if grade.Second_year_Grade %}
+          {% if grade.First_Sem %}
+          {% if grade.trinal %}
+ 
+
+       
+        <p>{{  grade.subject.subject_name }}: {{  grade.get_computed}}</p>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+ 
+       {% endfor %}
+
+      </div>
+      </div>
+  </div>
+</div>
+</div>
+ <div class="panel-group" id="accordion">
+     <div class="col-md-4" style="margin-bottom:20px">
+    <div class="panel panel-default">
+     
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" align="center" ><p allign="center">Midterm</p></a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse in">
+        <div class="panel-body">  
+          {% for grade in myuser.grade_set.all %}
+         {% if grade.Second_year_Grade %}
+          {% if grade.First_Sem %}
+          {% if grade.trinal %}
+ 
+
+       
+        <p>{{  grade.subject.subject_name }}: {{  grade.get_computed}}</p>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+ 
+       {% endfor %}
+
+      </div>
+      </div>
+  </div>
+</div>
+</div>
+ 
+
+
 		</div>
       </div>
     </div>
   </div> 
 </div>
+
 </html>
 </div>
 </div>
 </body>
+ 
  {% endblock content %}
  	
 

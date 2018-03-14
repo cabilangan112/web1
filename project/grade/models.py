@@ -17,7 +17,7 @@ from professor.utils import unique_slug_generator
 
 
 class Grade(models.Model):
-	user		 =      models.OneToOneField(User, on_delete=models.CASCADE, related_name='Grade')
+	user		 =      models.ForeignKey(User)
 	First_year_Grade     =      models.BooleanField(default=False)
 	Second_year_Grade	 = 		models.BooleanField(default=False)
 	Third_year_Grade	 = 		models.BooleanField(default=False)
@@ -38,11 +38,6 @@ class Grade(models.Model):
 	midterm      =      models.BooleanField(default=False)
 	Final        =      models.BooleanField(default=False)
  
-
-	def grade(self):
-		if self.user.Year=='3rd':
-			Third_year_Grade	 = 		models.BooleanField(default=True)
-			return grade
 
 	def get_computed(self):
 		result = self.quiz * 0.25 + self.performance * 0.25 + self.exam  * 0.50 
