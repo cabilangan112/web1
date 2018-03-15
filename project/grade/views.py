@@ -9,6 +9,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.shortcuts import render
 User = get_user_model()
+
+from io import BytesIO
+from django.http import HttpResponse
+from django.template.loader import get_template
+from.utils import render_to_pdf
+from django.views.generic import View
+
+
+from django.template.loader import get_template
 from django.shortcuts import render, get_object_or_404, redirect
 from grade.models import Grade
 from django.views import generic
@@ -18,23 +27,13 @@ from myuser.decorators import student_required
 from .forms import GradeCreate
 from django.views.generic import (ListView,DetailView,CreateView,UpdateView)
 # Create your views here.
+from xhtml2pdf import pisa
+
 
 class Year(TemplateView):
     template_name = 'department/Year.html'
     
-class ProfileDetailView2(DetailView):
-	template_name = 'Grade2.html'
 
-	def get_object(self):
-		last_name = self.kwargs.get("last_name")
-		if last_name is None:
-			raise Http404
-		return get_object_or_404(User, last_name__iexact=last_name, is_active=True)
-
-	def get_context_data(self, *args, **kwargs):
-		context =super(ProfileDetailView2, self).get_context_data(*args, **kwargs)
-		myuser = context['myuser']
-		return context
 
 
 class ProfileDetailView1(DetailView):
@@ -51,7 +50,19 @@ class ProfileDetailView1(DetailView):
 		myuser = context['myuser']
 		return context
 
+class ProfileDetailView2(DetailView):
+	template_name = 'Grade2.html'
 
+	def get_object(self):
+		last_name = self.kwargs.get("last_name")
+		if last_name is None:
+			raise Http404
+		return get_object_or_404(User, last_name__iexact=last_name, is_active=True)
+
+	def get_context_data(self, *args, **kwargs):
+		context =super(ProfileDetailView2, self).get_context_data(*args, **kwargs)
+		myuser = context['myuser']
+		return context
 
 class ProfileDetailView3(DetailView):
 	template_name = 'Grade3.html'
@@ -101,3 +112,31 @@ class grade_Create(CreateView):
 		login(self.request, user)
 		return redirect('/home')
  
+
+
+ 
+ 
+
+class GeneratePdf(View):
+	def get(self, request, *args, **kwargs):
+		template = get_template("invoice.html")
+		context = {
+			"invoice_id":123,
+			"name": "jassen",
+			"ammount":12323,
+			"today":"today",
+
+		}
+		html = template.render(context) 
+		pdf = render_to_pdf('invoice.html', context)
+		if pdf:
+			response =  HttpResponse(pdf, content_type='application/pdf')
+			filename = "Invoice_%s.pdf" %("12323")
+			content  = "inline; filename='%s'" %(filename)
+			download = request.GET.get("download")
+			if download:
+				content = "attachment; filename='%s'" %(filename) 
+			response['Content-Desposition'] = content
+			return response
+		return HttpResponse(pdf)
+  

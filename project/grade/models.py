@@ -19,7 +19,7 @@ from professor.utils import unique_slug_generator
 class Grade(models.Model):
 	user		 =      models.ForeignKey(User)
 	First_year_Grade     =      models.BooleanField(default=False)
-	Second_year_Grade	 = 		models.BooleanField(default=False)
+	Second_year_Grade		 = 		models.BooleanField(default=False)
 	Third_year_Grade	 = 		models.BooleanField(default=False)
 	Fourth_year_Grade    =      models.BooleanField(default=False)
 
