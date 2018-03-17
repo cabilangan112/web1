@@ -1,0 +1,242 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<title> {{ myuser.last_name }}</title>
+<!DOCTYPE html>
+<html>
+<head>
+
+	{% load staticfiles %}
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+   <link rel="stylesheet" href="{% static 'css/card.css' %}">
+   <link rel="stylesheet" href="{% static 'css/image.css' %}">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+
+
+<div class="bg"></div>
+	
+<br></br>
+<div class="card">
+ 	 		<p><img src="{{  myuser.MEDIA_URL }}{{myuser.Student_profile.url}}" width="200px"></p>
+ 			<h3><a href='{% url "myuser:edit" last_name=myuser.last_name %}'>{{  myuser.first_name }} {{ myuser.last_name }}</a></h3>
+ 		</div>
+<br></br>
+
+
+
+ {% include 'snippets/nav.html'%} 
+{% for grade in myuser.grade_set.all %}
+
+    <p>Third Year Record</p>
+    <br></br>
+    <p>First Sem Record</p>
+
+  <div class="panel-group" id="accordion">
+     <div class="col-md-4" style="margin-bottom:20px">
+    <div class="panel panel-default">
+     
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" align="center" ><p allign="center">Trinal</p></a>
+        </h4>
+      </div>
+      <div id="collapse" class="panel-collapse collapse in">
+        <div class="panel-body">  
+     
+          {% if grade.Fourthyear_Grade %}
+          {% if grade.First_Sem %}
+          {% if grade.trinal %}
+ 
+
+ 			 
+				<p>{{  grade.subject.subject_name }}: {{  grade.get_computed}}</p>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+ 
+ 
+			</div>
+      </div>
+  </div>
+</div>
+ 
+  <div class="panel-group" id="accordion">
+  	 <div class="col-md-4" style="margin-bottom:20px">
+    <div class="panel panel-default">
+     
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4" align="center" ><p allign="center">Midterm</p></a>
+        </h4>
+      </div>
+      <div id="collapse4" class="panel-collapse collapse in">
+        <div class="panel-body"> 
+ 
+   
+          {% if grade.Fourth_year_Grade %}
+          {% if grade.First_Sem %}
+          {% if grade.trinal %}
+ 
+
+       
+        <p>{{  grade.subject.subject_name }}: {{  grade.get_computed}}</p>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+ 
+   
+
+	 
+        </div>
+      </div>
+  </div>
+    </div>
+  </div>
+  <div class="panel-group" id="accordion">
+  	 <div class="col-md-4" style="margin-bottom:20px">
+    <div class="panel panel-default">
+     
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse5" align="center" ><p allign="center">Final</p></a>
+        </h4>
+      </div>
+      <div id="collapse5" class="panel-collapse collapse in">
+        <div class="panel-body"> 
+ 
+          {% if grade.Fourth_year_Grade %}
+          {% if grade.First_Sem %}
+          {% if grade.trinal %}
+ 
+
+       
+        <p>{{  grade.subject.subject_name }}: {{  grade.get_computed}}</p>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+ 
+ 
+
+        </div>
+      </div>
+  </div>
+    </div>
+</div>
+  <p>Second Sem Record</p>
+
+
+
+ <div class="panel-group" id="accordion">
+     <div class="col-md-4" style="margin-bottom:20px">
+    <div class="panel panel-default">
+     
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse6" align="center" ><p allign="center">Trinal</p></a>
+        </h4>
+      </div>
+      <div id="collapse6" class="panel-collapse collapse in">
+        <div class="panel-body">  
+ 
+ 
+          {% if grade.Fourth_year_Grade %}
+          {% if grade.Second_Sem %}
+          {% if grade.trinal %}
+ 
+
+       
+        <p>{{  grade.subject.subject_name }}: {{  grade.get_computed}}</p>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+ 
+ 
+
+      </div>
+      </div>
+  </div>
+</div>
+ 
+ <div class="panel-group" id="accordion">
+     <div class="col-md-4" style="margin-bottom:20px">
+    <div class="panel panel-default">
+     
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse7" align="center" ><p allign="center">Midterm</p></a>
+        </h4>
+      </div>
+      <div id="collapse7" class="panel-collapse collapse in">
+        <div class="panel-body">  
+ 
+ 
+          {% if grade.Fourth_year_Grade %}
+          {% if grade.Second_Sem %}
+          {% if grade.trinal %}
+ 
+
+       
+        <p>{{  grade.subject.subject_name }}: {{  grade.get_computed}}</p>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+ 
+ 
+
+      </div>
+      </div>
+  </div>
+</div>
+</div>
+ <div class="panel-group" id="accordion">
+     <div class="col-md-4" style="margin-bottom:20px">
+    <div class="panel panel-default">
+     
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse8" align="center" ><p allign="center">Midterm</p></a>
+        </h4>
+      </div>
+      <div id="collapse8" class="panel-collapse collapse in">
+        <div class="panel-body">  
+ 
+  
+          {% if grade.Fourth_year_Grade %}
+          {% if grade.Second_Sem %}
+          {% if grade.trinal %}
+ 
+
+       
+        <p>{{  grade.subject.subject_name }}: {{  grade.get_computed}}</p>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+ 
+ 
+
+      </div>
+      </div>
+  </div>
+</div>
+</div>
+ 
+
+
+ 
+</html>
+ 
+</body>
+ 
+     {% endfor %}
+ {% endblock content %}
+ 	
+

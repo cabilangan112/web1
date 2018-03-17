@@ -79,7 +79,7 @@ class ProfileDetailView3(DetailView):
 		return context
 
 class ProfileDetailView4(DetailView):
-	template_name = 'Grad4.html'
+	template_name = 'Grade4.html'
 
 	def get_object(self):
 		last_name = self.kwargs.get("last_name")
