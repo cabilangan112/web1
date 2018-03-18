@@ -13,7 +13,7 @@ urlpatterns = [
 	url(r'^citedep/$', views.citedep.as_view(), name='cite'),
 
 
-	url(r'^signup/', views.SignUpView.as_view(), name='signup'),
+	#url(r'^signup/', views.SignUpView.as_view(), name='signup'),
 	url(r'^signup/student/', views.RegisterView.as_view(), name='student'),
 	url(r'^signup/faculty/', views.FacultyRegisterView.as_view(), name='faculty'),
 

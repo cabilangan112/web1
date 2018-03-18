@@ -2,10 +2,10 @@
 
 {% block content %} 
 {% load staticfiles %}
- 
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/image.css' %}">
-<link rel="stylesheet" href="{% static 'css/studentcard.css' %}">
+<link rel="stylesheet" href="{% static 'css/cards.css' %}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -24,29 +24,26 @@
 	<br></br>
 		<br></br>
 
+
  {% include 'snippets/nav.html'%} 
+ 		<p>Second Year List</p>
 	<br></br>
 				{% for obj in students %}
 
 
 <div class="col-md-4" >
 
-	<div class="card" >
+	<div class="card" style="margin-left: 0px;padding-right: 122px;padding-top: 19px;padding-bottom: 0px;" >
 
 			<div>
  	 		<p><img src="{{  obj.MEDIA_URL }}{{obj.Student_profile.url}}" width="200px"></p>
  			<h3><a href="/grades/student/Year/">{{  obj.first_name }} {{ obj.last_name }}</a></h3>
  			<p>{{obj.course}}-{{obj.Year}}</p>
-  {% if not obj.Year.3rd%}
+ 
   <p><li><a href='{% url "grade:detail1" last_name=obj.last_name %}'   role="button">First Year Record</a></li></p>
-   {% endif %}
-     {% if obj.Year%}
+ 
  <p><li><a href='{% url "grade:detail2" last_name=obj.last_name %}'   role="button">Second Year Record</a></li></p>
-    {% endif %}
- {% if obj.Year%}
-  <p><li><a href='{% url "grade:detail3" last_name=obj.last_name  %}'   role="button">Third Year Record</a></li></p> 
-  {% endif %}
- <p><li><a href='{% url "grade:detail4" last_name=obj.last_name  %}'   role="button">Fourth Year Record</a></li></p> 
+  
  
  		</div>
 </div>

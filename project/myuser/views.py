@@ -54,7 +54,7 @@ class bscssecond(generic.ListView):
 		query = self.request.GET.get('q')
 		students = MyUser.objects.filter(course__course_name__contains='BSCS',Year__contains='2nd')
 		context = {'students':students,}
-		return render(request, "student_list.html", context)
+		return render(request, "student_list2.html", context)
 
 @method_decorator([login_required, teacher_required], name='dispatch')
 class bscsthird(generic.ListView):
@@ -63,7 +63,7 @@ class bscsthird(generic.ListView):
 		query = self.request.GET.get('q')
 		students = MyUser.objects.filter(course__course_name__contains='BSCS',Year__contains='3rd')
 		context = {'students':students,}
-		return render(request, "student_list.html", context)
+		return render(request, "student_list3.html", context)
 		
 @method_decorator([login_required, teacher_required], name='dispatch')
 class bscsfourth(generic.ListView):
@@ -72,7 +72,7 @@ class bscsfourth(generic.ListView):
 		query = self.request.GET.get('q')
 		students = MyUser.objects.filter(course__course_name__contains='BSCS',Year__contains='4rth')
 		context = {'students':students,}
-		return render(request, "student_list.html", context)
+		return render(request, "student_list4.html", context)
 
 @method_decorator([login_required, teacher_required], name='dispatch')
 class RegisterView(CreateView):
@@ -85,9 +85,9 @@ class RegisterView(CreateView):
 		return super().get_context_data(**kwargs)
 
 	def form_valid(self, form):
-		user = form.save()
+		obj = form.save(commit=False)
 		login(self.request, user)
-		return redirect('/home')
+		return redirect('myuser:department')
 @method_decorator([login_required, teacher_required], name='dispatch')
 class FacultyRegisterView(CreateView):
 	model = User
@@ -100,9 +100,9 @@ class FacultyRegisterView(CreateView):
 		return super().get_context_data(**kwargs)
 
 	def form_valid(self, form):
-		user = form.save()
+		obj = form.save(commit=False)
 		login(self.request, user)
-		return redirect('/home')
+		return redirect('myuser:department')
 
 
 @method_decorator([login_required, teacher_required], name='dispatch')

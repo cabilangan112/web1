@@ -34,7 +34,7 @@
 
 
  {% include 'snippets/nav.html'%} 
-{% for grade in myuser.grade_set.all %}
+
 
     <p>Third Year Record</p>
     <br></br>
@@ -51,6 +51,7 @@
       </div>
       <div id="collapse" class="panel-collapse collapse in">
         <div class="panel-body">  
+          {% for grade in myuser.grade_set.all %}
      
           {% if grade.Third_year_Grade %}
           {% if grade.First_Sem %}
@@ -62,7 +63,7 @@
         {% endif %}
         {% endif %}
         {% endif %}
- 
+      {% endfor %}
  
 			</div>
       </div>
@@ -81,7 +82,7 @@
       <div id="collapse4" class="panel-collapse collapse in">
         <div class="panel-body"> 
  
-   
+             {% for grade in myuser.grade_set.all %}
           {% if grade.Third_year_Grade %}
           {% if grade.First_Sem %}
           {% if grade.trinal %}
@@ -93,7 +94,7 @@
         {% endif %}
         {% endif %}
  
-   
+         {% endfor %}
 
 	 
         </div>
@@ -112,7 +113,8 @@
       </div>
       <div id="collapse5" class="panel-collapse collapse in">
         <div class="panel-body"> 
- 
+  
+             {% for grade in myuser.grade_set.all %}
           {% if grade.Third_year_Grade %}
           {% if grade.First_Sem %}
           {% if grade.trinal %}
@@ -123,7 +125,8 @@
         {% endif %}
         {% endif %}
         {% endif %}
- 
+  
+         {% endfor %} 
  
 
         </div>
@@ -146,7 +149,8 @@
       </div>
       <div id="collapse6" class="panel-collapse collapse in">
         <div class="panel-body">  
- 
+  
+             {% for grade in myuser.grade_set.all %}
  
           {% if grade.Second_year_Grade %}
           {% if grade.Second_Sem %}
@@ -159,7 +163,7 @@
         {% endif %}
         {% endif %}
  
- 
+          {% endfor %}
 
       </div>
       </div>
@@ -178,7 +182,8 @@
       <div id="collapse7" class="panel-collapse collapse in">
         <div class="panel-body">  
  
- 
+  
+             {% for grade in myuser.grade_set.all %}
           {% if grade.Third_year_Grade %}
           {% if grade.Second_Sem %}
           {% if grade.trinal %}
@@ -190,7 +195,8 @@
         {% endif %}
         {% endif %}
  
- 
+  
+         {% endfor %}
 
       </div>
       </div>
@@ -208,7 +214,8 @@
       </div>
       <div id="collapse8" class="panel-collapse collapse in">
         <div class="panel-body">  
- 
+  
+             {% for grade in myuser.grade_set.all %}
   
           {% if grade.Third_year_Grade %}
           {% if grade.Second_Sem %}
@@ -221,7 +228,8 @@
         {% endif %}
         {% endif %}
  
- 
+  
+         {% endfor %}
 
       </div>
       </div>
@@ -236,7 +244,7 @@
  
 </body>
  
-     {% endfor %}
+
  {% endblock content %}
  	
 
