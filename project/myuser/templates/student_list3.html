@@ -34,7 +34,7 @@
 
 			<div>
  	 		<p><img src="{{  obj.MEDIA_URL }}{{obj.Student_profile.url}}" width="200px"></p>
- 			<h3><a href="/grades/student/Year/">{{  obj.first_name }} {{ obj.last_name }}</a></h3>
+ 			<h5><a href="/grades/student/Year/">{{  obj.first_name }} {{ obj.last_name }}</a></h5>
  			<p>{{obj.course}}-{{obj.Year}}</p>
  
   <p><li><a href='{% url "grade:detail1" last_name=obj.last_name %}'   role="button">First Year Record</a></li></p>

@@ -83,11 +83,13 @@ class RegisterView(CreateView):
 	def get_context_data(self, **kwargs):
 		kwargs['user_type'] = 'student'
 		return super().get_context_data(**kwargs)
-
+	
 	def form_valid(self, form):
-		obj = form.save(commit=False)
-		login(self.request, user)
-		return redirect('myuser:department')
+ 		obj = form.save(commit=False)
+ 		obj.user = self.request.user
+ 		return super(RegisterView, self).form_valid(form)
+
+
 @method_decorator([login_required, teacher_required], name='dispatch')
 class FacultyRegisterView(CreateView):
 	model = User
@@ -100,10 +102,9 @@ class FacultyRegisterView(CreateView):
 		return super().get_context_data(**kwargs)
 
 	def form_valid(self, form):
-		obj = form.save(commit=False)
-		login(self.request, user)
-		return redirect('myuser:department')
-
+ 		obj = form.save(commit=False)
+ 		obj.user = self.request.user
+ 		return super(FacultyRegisterView, self).form_valid(form)
 
 @method_decorator([login_required, teacher_required], name='dispatch')
 class StudentUpdateView(UpdateView):

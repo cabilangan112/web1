@@ -108,9 +108,10 @@ class grade_Create(CreateView):
 		return Grade.objects.filterfilter(user=self.request.user.is_student)
 
 	def form_valid(self, form):
-		user = form.save()
-		login(self.request, user)
-		return redirect('myuser:department')
+ 		obj = form.save(commit=False)
+ 		obj.user = self.request.user
+ 		return super(FacultyRegisterView, self).form_valid(form)
+
  
 
 
@@ -119,16 +120,11 @@ class grade_Create(CreateView):
 
 class GeneratePdf(View):
 	def get(self, request, *args, **kwargs):
-		template = get_template("invoice.html")
-		context = {
-			"invoice_id":123,
-			"name": "jassen",
-			"ammount":12323,
-			"today":"today",
-
-		}
+		template = get_template("print3.html")
+		students = MyUser.objects.filter(course__course_name__contains='BSCS',Year__contains='3rd')
+		context = {'students':students,}
 		html = template.render(context) 
-		pdf = render_to_pdf('invoice.html', context)
+		pdf = render_to_pdf('print3.html', context)
 		if pdf:
 			response =  HttpResponse(pdf, content_type='application/pdf')
 			filename = "Invoice_%s.pdf" %("12323")

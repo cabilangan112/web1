@@ -110,7 +110,9 @@ class MyUser(AbstractBaseUser):
     def __str__(self):
         return '%s, %s, %s, %s'  % (self.last_name, self.first_name, self.course, self.Year)
 
-
+    def get_absolute_url(self):
+        return u'/some_url/%d' % self.id 
+        
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
         # Simplest possible answer: Yes, always

@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from . import views
+from .models import MyUser
 app_name='myuser'
 urlpatterns = [
 #	url(r'^$', views.index, name='index'),
@@ -14,7 +15,7 @@ urlpatterns = [
 
 
 	#url(r'^signup/', views.SignUpView.as_view(), name='signup'),
-	url(r'^signup/student/', views.RegisterView.as_view(), name='student'),
+	url(r'^signup/student/', views.RegisterView.as_view(model=MyUser), name='student'),
 	url(r'^signup/faculty/', views.FacultyRegisterView.as_view(), name='faculty'),
 
 

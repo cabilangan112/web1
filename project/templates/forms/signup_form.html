@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-md-8 col-sm-20 col-12">
       <h2>Sign up as a {{ user_type }}</h2>
-      <form method="post" novalidate>
+     <form method='POST' enctype="multipart/form-data">
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}">
         {{ form|crispy }}

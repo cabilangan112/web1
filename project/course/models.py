@@ -17,7 +17,7 @@ class Course(models.Model):
 	
 
 	def __str__(self):
-		return '%s, %s' % (self.course_name , self.Department)
+		return '%s' % (self.course_name  )
  
 		
 	def list_subjects(self):
